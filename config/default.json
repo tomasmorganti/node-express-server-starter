@@ -5,5 +5,11 @@
   },
   "rateLimit": {
     "max": 500
+  },
+  "db": {
+    "pool": {
+      "min": 2,
+      "max": 10
+    }
   }
 }

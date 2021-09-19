@@ -5,6 +5,7 @@ import applyMiddleware from '@/utils/applyMiddleware';
 import routes from '@/routes';
 import applyRoutes from '@/utils/applyRoutes';
 import errorHandlers from '@/middleware/errorHandlers';
+import { connectDatabase } from '@/utils/connectDatabase';
 
 process.on('uncaughtException', (e) => {
   console.error({
@@ -28,6 +29,7 @@ const startServer = async () => {
   applyMiddleware(commonMiddleware, app);
   applyRoutes(routes, app);
   applyMiddleware(errorHandlers, app);
+  await connectDatabase(process.env.PG_CONNECTION_STRING);
   app.listen(PORT, () => {
     console.info(`Server is listening on http://localhost:${PORT}...`);
   });
