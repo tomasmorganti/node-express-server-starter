@@ -1,0 +1,7 @@
+{
+  "env": "production",
+  "cors": {
+    "origin": "lessonblox.com",
+    "credentials": true
+  }
+}

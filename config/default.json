@@ -1,0 +1,9 @@
+{
+  "cors": {
+    "origin": true,
+    "credentials": true
+  },
+  "rateLimit": {
+    "max": 500
+  }
+}
