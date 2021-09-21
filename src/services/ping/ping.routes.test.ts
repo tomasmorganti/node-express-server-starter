@@ -14,29 +14,22 @@ beforeAll(() => {
 
 describe('Testing ping routes', () => {
   describe('[GET] /ping', () => {
-    it('responds with statusCode 200 and body {message: "pong"}.', () => {
-      return request(app)
-        .get('/ping')
-        .expect(200)
-        .then((res) => {
-          expect(res.body).toMatchObject({ message: 'pong' });
-        });
+    it('responds with statusCode 200 and body {message: "pong"}.', async () => {
+      const { body } = await request(app).get('/ping').expect(200);
+      expect(body).toBeObject();
+      expect(body.message).toBe('pong');
     });
   });
   describe('[POST] /pong', () => {
     it('responds with statusCode 200 and body {message: "ping"}', async () => {
-      return request(app)
-        .post('/pong')
-        .send({ message: 'pong' })
-        .expect(200)
-        .then((res) => {
-          expect(res.body).toMatchObject({ message: 'ping' });
-        });
+      const { body } = await request(app).post('/pong').send({ message: 'pong' }).expect(200);
+      expect(body).toBeObject();
+      expect(body.message).toBe('ping');
     });
   });
   describe('[POST] /pong bad request missing "message" parameter', () => {
     it('responds with statusCode 400', async () => {
-      return request(app).post('/pong').expect(400);
+      await request(app).post('/pong').expect(400);
     });
   });
 });
