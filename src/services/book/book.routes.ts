@@ -11,7 +11,7 @@ export default [
         const { id } = request.params;
         const book: BookShape = await Book.query().findById(id);
         if (!book) {
-          throw new HTTP404Error('Book not found');
+          throw new HTTP404Error('Book not found!');
         }
         return response.status(200).send(book);
       },

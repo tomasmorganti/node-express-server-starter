@@ -1,0 +1,26 @@
+services:
+  server:
+    container_name: integration-tester
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - PG_CONNECTION_STRING=postgres://admin:password@database/test
+      - PORT=9000
+    ports:
+      - '9000:9000'
+    depends_on:
+      - 'database'
+    command: >
+      sh -c '/wait-for-it.sh database:5432 &&
+             npm run migrate &&
+             npm run test'
+  database:
+    container_name: database
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=test
+    ports:
+      - '5432:5432'
