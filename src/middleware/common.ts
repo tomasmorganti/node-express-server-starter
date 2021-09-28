@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
-import config from 'config';
 import rateLimit from 'express-rate-limit';
 import bodyParser from 'body-parser';
 import compression from 'compression';
@@ -9,15 +8,14 @@ import cookieParser from 'cookie-parser';
 
 const handleHTTPHeaders = (router: Router) => router.use(helmet());
 
-const handleCors = (router: Router) => router.use(cors({ credentials: config.get('cors.credentials'), origin: config.get('cors.origin') }));
+const handleCors = (router: Router) => router.use(cors({ credentials: true, origin: process.env.ORIGIN }));
 
 const handleRateLimit = (router: Router) => {
   const limit = rateLimit({
-    max: config.get('rateLimit.max'),
+    max: 500,
     windowMs: 60 * 60 * 1000,
     message: 'Too many requests',
   });
-
   router.use(limit);
 };
 

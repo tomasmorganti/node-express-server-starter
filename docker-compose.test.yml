@@ -1,22 +1,23 @@
 services:
-  server:
-    container_name: integration-tester
+  test_server:
+    container_name: integration_tester
     build:
       context: .
       dockerfile: Dockerfile
     environment:
-      - PG_CONNECTION_STRING=postgres://admin:password@database/test
+      - PG_CONNECTION_STRING=postgres://admin:password@test_database/test
       - PORT=9000
+      - CORS_ORIGIN=true
     ports:
       - '9000:9000'
     depends_on:
-      - 'database'
+      - 'test_database'
     command: >
-      sh -c '/wait-for-it.sh database:5432 &&
+      sh -c '/wait-for-it.sh test_database:5432 &&
              npm run migrate &&
              npm run test'
-  database:
-    container_name: database
+  test_database:
+    container_name: test_database
     image: postgres:13
     environment:
       - POSTGRES_USER=admin

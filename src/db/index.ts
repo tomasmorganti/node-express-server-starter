@@ -1,17 +1,19 @@
 import knex from 'knex';
-import config from 'config';
-import { knexSnakeCaseMappers } from 'objection';
+import { Model, knexSnakeCaseMappers } from 'objection';
 
-const db = (connection: string) =>
-  knex({
+export type KnexDB = knex<any, unknown[]>;
+
+export const connectDatabase = (connection: string) => {
+  const db = knex({
     client: 'pg',
     useNullAsDefault: true,
     connection,
     pool: {
-      min: config.get('db.pool.min'),
-      max: config.get('db.pool.max'),
+      min: 2,
+      max: 10,
     },
     ...knexSnakeCaseMappers(),
   });
-
-export default db;
+  Model.knex(db);
+  return db;
+};

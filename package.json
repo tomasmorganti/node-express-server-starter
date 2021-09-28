@@ -3,27 +3,28 @@
   "version": "0.0.0",
   "description": "",
   "scripts": {
-    "dev": "nodemon",
-    "build": "tsc && tsc-alias",
+    "dev:build": "docker-compose build",
+    "dev:start": "docker-compose -p node-express-server-starter up -d && docker logs dev_server -f",
+    "dev:stop": "docker-compose -p node-express-server-starter down -v",
+    "nodemon": "nodemon",
     "lint": "eslint --ignore-path .gitignore --ext .ts src/",
     "lint:fix": "npm run lint -- --fix",
-    "start": "node dist/server.js",
+    "prepare": "husky install",
     "test": "jest --forceExit --detectOpenHandles",
+    "test:integration": "sh ./run-integration-tests.sh",
     "seed": "knex seed:run --knexfile=knexfile.ts --verbose",
     "migrate": "knex migrate:latest --knexfile=knexfile.ts --verbose",
     "rollback": "knex migrate:rollback --knexfile=knexfile.ts --verbose",
-    "make:seed": "knex seed:make --knexfile=knexfile.ts -x ts --env development",
-    "make:migration": "knex migrate:make --knexfile=knexfile.ts -x ts --env development",
-    "prepare": "husky install",
-    "docker:dev": "docker-compose -p dev up -d",
-    "docker:test": "sh ./run-tests.sh"
+    "make:seed": "knex seed:make --knexfile=knexfile.ts -x ts",
+    "make:migration": "knex migrate:make --knexfile=knexfile.ts -x ts",
+    "build": "tsc && tsc-alias",
+    "start": "node dist/server.js"
   },
   "keywords": [],
   "author": "Tomas Morganti",
   "license": "MIT",
   "devDependencies": {
     "@types/compression": "^1.7.2",
-    "@types/config": "^0.0.39",
     "@types/cookie-parser": "^1.4.2",
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
@@ -52,16 +53,18 @@
   "dependencies": {
     "ajv": "^8.6.3",
     "compression": "^1.7.4",
-    "config": "^3.3.6",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
+    "envalid": "^7.2.1",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
     "express-rate-limit": "^5.3.0",
     "helmet": "^4.6.0",
+    "inspirational-quotes": "^1.0.8",
     "knex": "^0.21.21",
     "objection": "^2.2.16",
-    "pg": "^8.7.1"
+    "pg": "^8.7.1",
+    "quotation": "^2.0.1"
   }
 }

@@ -17,9 +17,9 @@ if [ $? -ne 0 ] ; then
   exit -1
 fi
 # wait for the test service to complete and grab the exit code
-TEST_EXIT_CODE=`docker wait integration-tester`
+TEST_EXIT_CODE=`docker wait integration_tester`
 # output the logs for the test (for clarity)
-docker logs integration-tester
+docker logs integration_tester
 # inspect the output of the test and display respective message
 if [ -z ${TEST_EXIT_CODE+x} ] || [ "$TEST_EXIT_CODE" -ne 0 ] ; then
   printf "${RED}Tests Failed${NC} - Exit Code: $TEST_EXIT_CODE\n"

@@ -1,25 +1,25 @@
 services:
-  server:
-    container_name: server
+  dev_server:
+    container_name: dev_server
     build:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ./:/app
-      - /app/node_modules
+      - ./src:/app/src
     environment:
-      - PG_CONNECTION_STRING=postgres://admin:password@database/starter
+      - PG_CONNECTION_STRING=postgres://admin:password@dev_database/starter
       - PORT=9000
+      - CORS_ORIGIN=true
     ports:
       - '9000:9000'
     depends_on:
-      - 'database'
+      - 'dev_database'
     command: >
-      sh -c '/wait-for-it.sh database:5432 &&
+      sh -c '/wait-for-it.sh dev_database:5432 &&
              npm run migrate &&
-             npm run dev'
-  database:
-    container_name: database
+             npm run nodemon'
+  dev_database:
+    container_name: dev_database
     image: postgres:13
     environment:
       - POSTGRES_USER=admin
