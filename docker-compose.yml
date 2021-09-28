@@ -1,26 +1,32 @@
 services:
-  dev_server:
-    container_name: dev_server
+  node:
     build:
       context: .
-      dockerfile: Dockerfile
+      args:
+        - NODE_ENV=development
+    image: dev_server:v0.0.0
+    container_name: server
     volumes:
-      - ./src:/app/src
+      - ./:/usr/local/app/
+      - ./package.json:/usr/local/package.json
+      - ./package-lock.json:/usr/local/package-lock.json
+      - exclude:/usr/local/app/node_modules/
     environment:
-      - PG_CONNECTION_STRING=postgres://admin:password@dev_database/starter
-      - PORT=9000
+      - PG_CONNECTION_STRING=postgres://admin:password@postgres/starter
+      - PORT=3000
       - CORS_ORIGIN=true
     ports:
-      - '9000:9000'
+      - '3000:3000'
     depends_on:
-      - 'dev_database'
+      - 'postgres'
     command: >
-      sh -c '/wait-for-it.sh dev_database:5432 &&
+      sh -c 'rm -rf /usr/local/app/node_modules/* &&
+            /wait-for-it.sh postgres:5432 &&
              npm run migrate &&
              npm run nodemon'
-  dev_database:
-    container_name: dev_database
+  postgres:
     image: postgres:13
+    container_name: database
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=password
@@ -29,3 +35,6 @@ services:
       - ./postgres:/var/lib/postgresql/data
     ports:
       - '5432:5432'
+
+volumes:
+  exclude:

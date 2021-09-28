@@ -1,14 +1,10 @@
-# compiled output
 .vscode
 /node_modules
 /dist
-
-# code formatter
 .eslintrc
 .eslintignore
 .husky
 .prettierrc
-
-# docker
 Dockerfile
 docker-compose.yml
+docker-compose.test.yml

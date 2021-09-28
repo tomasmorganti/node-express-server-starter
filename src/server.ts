@@ -31,7 +31,7 @@ const startServer = async () => {
   applyMiddleware(errorHandlers, app);
   connectDatabase(process.env.PG_CONNECTION_STRING);
   app.listen(process.env.PORT, () => {
-    console.info(`Server is listening! on http://localhost:${process.env.PORT}...`);
+    console.info(`Server is listening on http://localhost:${process.env.PORT}...`);
   });
 };
 
