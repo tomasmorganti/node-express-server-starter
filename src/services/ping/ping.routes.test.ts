@@ -15,7 +15,7 @@ beforeAll(() => {
 describe('Testing ping routes', () => {
   describe('[GET] /ping', () => {
     it('responds with statusCode 200 and body {message: "pong"}.', async () => {
-      const { body } = await request(app).get('/ping').expect(200);
+      const { body } = await request(app).get('/ping').expect(400);
       expect(body).toBeObject();
       expect(body.message).toBe('pong');
     });
