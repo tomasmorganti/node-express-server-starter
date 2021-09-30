@@ -7,16 +7,18 @@ export default (paramSchema: SchemaObject) => {
     const ajv = new Ajv({ $data: true, coerceTypes: true, strict: false });
     const paramSchemaKeys = Object.keys(paramSchema.properties);
     const requestParamObj = {} as any;
-    if (req.method === 'GET') {
-      for (const key of paramSchemaKeys) {
+    for (const key of paramSchemaKeys) {
+      if (req.method === 'GET') {
         requestParamObj[key] = get(req.query, key);
-      }
-    } else {
-      for (const key of paramSchemaKeys) {
+      } else {
         requestParamObj[key] = get(req.body, key);
       }
+      const keyInRequestParams = get(req.params, key);
+      if (keyInRequestParams) {
+        requestParamObj[key] = keyInRequestParams;
+      }
     }
-    //TODO: handle req.params validation
+    console.log(requestParamObj);
     const validated = ajv.validate(paramSchema, requestParamObj);
     if (!validated) {
       const errorMessage = ajv.errors ? ajv.errors[0].message : 'Bad request.';

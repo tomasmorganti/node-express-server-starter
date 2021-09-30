@@ -1,6 +1,5 @@
 FROM node:14
 
-# default node_env to production, compose overrides this
 ARG NODE_ENV=production
 ENV NODE_ENV $NODE_ENV
 
