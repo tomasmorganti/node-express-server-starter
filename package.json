@@ -10,6 +10,7 @@
     "nodemon": "nodemon",
     "lint": "eslint --ignore-path .gitignore --ext .ts src/",
     "lint:fix": "npm run lint -- --fix",
+    "format": "prettier --write",
     "prepare": "husky install",
     "test": "jest --forceExit --detectOpenHandles",
     "test-integration": "sh ./run-integration-tests.sh",
@@ -41,7 +42,6 @@
     "husky": "^7.0.2",
     "jest": "^27.2.0",
     "jest-extended": "^0.11.5",
-    "lint-staged": "^11.1.2",
     "nodemon": "^2.0.12",
     "prettier": "^2.4.1",
     "supertest": "^6.1.6",
@@ -61,9 +61,11 @@
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
     "express-rate-limit": "^5.3.0",
+    "express-winston": "^4.2.0",
     "helmet": "^4.6.0",
     "knex": "^0.21.21",
     "objection": "^2.2.16",
-    "pg": "^8.7.1"
+    "pg": "^8.7.1",
+    "uid": "^2.0.0"
   }
 }

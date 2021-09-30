@@ -26,13 +26,15 @@ afterAll(() => {
 });
 
 describe('Testing book routes', () => {
-  it('[GET] /book/:id', async () => {
-    const id = seededBooks[0].id;
+  describe('[GET] /book/:id', () => {
+    it('returns 200 response code and book object in body', async () => {
+      const id = seededBooks[0].id;
 
-    const { body: book } = await request(app).get(`/book/${id}`).expect(200);
+      const { body: book } = await request(app).get(`/book/${id}`).expect(200);
 
-    expect(book).toBeObject();
-    expect(book.id).toBe(id);
-    expect(book.name).toBe('A Game of Thrones');
+      expect(book).toBeObject();
+      expect(book.id).toBe(id);
+      expect(book.name).toBe('A Game of Thrones');
+    });
   });
 });

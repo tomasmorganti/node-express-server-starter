@@ -18,7 +18,6 @@ export default (paramSchema: SchemaObject) => {
         requestParamObj[key] = keyInRequestParams;
       }
     }
-    console.log(requestParamObj);
     const validated = ajv.validate(paramSchema, requestParamObj);
     if (!validated) {
       const errorMessage = ajv.errors ? ajv.errors[0].message : 'Bad request.';

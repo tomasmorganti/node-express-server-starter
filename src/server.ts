@@ -24,6 +24,12 @@ process.on('unhandledRejection', (e) => {
   process.exit(1);
 });
 
+import { uid } from 'uid/secure';
+
+const refreshToken = uid(32);
+
+export default console.log(refreshToken);
+
 const startServer = async () => {
   validateEnv();
   applyMiddleware(commonMiddleware, app);
