@@ -1,20 +1,20 @@
 {
-  "compilerOptions": {
-    "lib": ["es2020"],
-    "module": "commonjs",
-    "target": "es2020",
-    "outDir": "dist",
-    "sourceMap": true,
-    "strict": true,
-    "noImplicitAny": true,
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
+    "compilerOptions": {
+        "lib": ["es2020"],
+        "module": "commonjs",
+        "target": "es2020",
+        "outDir": "dist",
+        "sourceMap": true,
+        "strict": true,
+        "noImplicitAny": true,
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["src/*"]
+        }
     }
-  }
 }

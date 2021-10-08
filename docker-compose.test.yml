@@ -1,29 +1,29 @@
 services:
-  node:
-    build:
-      context: .
-      args:
-        - NODE_ENV=test
-    image: test_server:v0.0.0
-    container_name: integration_test_server
-    environment:
-      - PG_CONNECTION_STRING=postgres://admin:password@postgres/test
-      - PORT=3000
-      - CORS_ORIGIN=true
-    ports:
-      - '3000:3000'
-    depends_on:
-      - 'postgres'
-    command: >
-      sh -c '/wait-for-it.sh postgres:5432 &&
-             npm run migrate &&
-             npm run test'
-  postgres:
-    container_name: database
-    image: postgres:13
-    environment:
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=test
-    ports:
-      - '5432:5432'
+    node:
+        build:
+            context: .
+            args:
+                - NODE_ENV=test
+        image: test_server:v0.0.0
+        container_name: integration_test_server
+        environment:
+            - PG_CONNECTION_STRING=postgres://admin:password@postgres/test
+            - PORT=3000
+            - CORS_ORIGIN=true
+        ports:
+            - '3000:3000'
+        depends_on:
+            - 'postgres'
+        command: >
+            sh -c '/wait-for-it.sh postgres:5432 &&
+                   npm run migrate &&
+                   npm run test'
+    postgres:
+        container_name: database
+        image: postgres:13
+        environment:
+            - POSTGRES_USER=admin
+            - POSTGRES_PASSWORD=password
+            - POSTGRES_DB=test
+        ports:
+            - '5432:5432'

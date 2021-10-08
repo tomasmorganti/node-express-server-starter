@@ -11,25 +11,25 @@ const handleHTTPHeaders = (router: Router) => router.use(helmet());
 const handleCors = (router: Router) => router.use(cors({ credentials: true, origin: process.env.ORIGIN }));
 
 const handleRateLimit = (router: Router) => {
-  const limit = rateLimit({
-    max: 500,
-    windowMs: 60 * 60 * 1000,
-    message: 'Too many requests',
-  });
-  router.use(limit);
+    const limit = rateLimit({
+        max: 500,
+        windowMs: 60 * 60 * 1000,
+        message: 'Too many requests',
+    });
+    router.use(limit);
 };
 
 const handleBodyRequestParsing = (router: Router) => {
-  router.use(bodyParser.urlencoded({ extended: true }));
-  router.use(bodyParser.json());
+    router.use(bodyParser.urlencoded({ extended: true }));
+    router.use(bodyParser.json());
 };
 
 const handleCompression = (router: Router) => {
-  router.use(compression());
+    router.use(compression());
 };
 
 const handleCookie = (router: Router) => {
-  router.use(cookieParser());
+    router.use(cookieParser());
 };
 
 export default [handleHTTPHeaders, handleCors, handleRateLimit, handleBodyRequestParsing, handleCompression, handleCookie];
