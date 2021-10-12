@@ -12,7 +12,7 @@ services:
             - ./package-lock.json:/usr/local/package-lock.json
             - exclude:/usr/local/app/node_modules/
         environment:
-            - PG_CONNECTION_STRING=postgres://admin:password@postgres/starter
+            - PG_CONNECTION_STRING=postgres://admin:password@postgres/dev
             - PORT=3000
             - CORS_ORIGIN=true
         ports:
@@ -30,7 +30,7 @@ services:
         environment:
             - POSTGRES_USER=admin
             - POSTGRES_PASSWORD=password
-            - POSTGRES_DB=starter
+            - POSTGRES_DB=dev
         volumes:
             - ./postgres:/var/lib/postgresql/data
         ports:

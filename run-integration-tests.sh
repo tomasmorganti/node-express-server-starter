@@ -6,7 +6,7 @@ NC='\033[0m'
 trap 'cleanup ; printf "${RED}Tests Failed For Unexpected Reasons${NC}\n"'\
   HUP INT QUIT PIPE TERM
 # build and run the composed services
-docker-compose -p ci -f docker-compose.test.yml build && docker-compose -p ci -f docker-compose.test.yml up -d
+docker-compose -p ci -f docker-compose.test.yml up -d --build
 if [ $? -ne 0 ] ; then
   printf "${RED}Docker Compose Failed${NC}\n"
   exit -1
@@ -22,6 +22,6 @@ else
   printf "${GREEN}Tests Passed${NC}\n"
 fi
 # stop remove any running containers and volumes
-docker-compose -p ci -f docker-compose.test.yml down -v
+docker-compose -p ci -f docker-compose.test.yml down -v --rmi local
 # exit the script with the same code as the test service code
 exit $TEST_EXIT_CODE
