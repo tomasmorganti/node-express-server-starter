@@ -21,14 +21,13 @@ jobs:
         runs-on: ubuntu-latest
         # Steps represent a sequence of tasks that will be executed as part of the job
         steps:
-            # Set environment variables
-            env:
-                SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
-                TO_EMAIL: ${{ secrets.TO_EMAIL }}
-                FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
             # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
             - uses: actions/checkout@v2
 
             # Runs a single command using the runners shell
             - name: Run tests
-              run: sh ./run-integration-tests.sh
+                run: sh ./run-integration-tests.sh
+                env:
+                    SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+                    TO_EMAIL: ${{ secrets.TO_EMAIL }}
+                    FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
