@@ -22,6 +22,8 @@ const msg = {
     },
 };
 
+console.log(process.env.TO_EMAIL);
+
 export const sendEmail = async () => {
     try {
         await sgMail.send(msg);
