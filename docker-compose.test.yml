@@ -10,6 +10,9 @@ services:
             - PG_CONNECTION_STRING=postgres://admin:password@postgres/test
             - PORT=3000
             - CORS_ORIGIN=true
+            - SENDGRID_API_KEY
+            - TO_EMAIL
+            - FROM_EMAIL
         ports:
             - '3000:3000'
         depends_on:

@@ -30,4 +30,4 @@ jobs:
                   SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
                   TO_EMAIL: ${{ secrets.TO_EMAIL }}
                   FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
-              run: echo ${#TO_EMAIL}
+              run: sh ./run-integration-tests.sh
