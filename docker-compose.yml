@@ -23,7 +23,7 @@ services:
             sh -c 'rm -rf /usr/local/app/node_modules/* &&
                   /wait-for-it.sh postgres:5432 &&
                     npm run migrate &&
-                    npm run nodemon'
+                    npm run dev'
     postgres:
         image: postgres:13
         container_name: database

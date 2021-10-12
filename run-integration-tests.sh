@@ -21,7 +21,7 @@ if [ -z ${TEST_EXIT_CODE+x} ] || [ "$TEST_EXIT_CODE" -ne 0 ] ; then
 else
   printf "${GREEN}Tests Passed${NC}\n"
 fi
-# stop remove any running containers and volumes
-docker-compose -p ci -f docker-compose.test.yml down -v --rmi local
+# stop remove any running containers and volumes and remove any dangling images
+docker-compose -p ci -f docker-compose.test.yml down -v && docker image prune -f
 # exit the script with the same code as the test service code
 exit $TEST_EXIT_CODE
