@@ -5,6 +5,7 @@ const validateEnv = () => {
         PORT: port(),
         PG_CONNECTION_STRING: str(),
         CORS_ORIGIN: str(),
+        SENDGRID_API_KEY: str(),
     });
 };
 

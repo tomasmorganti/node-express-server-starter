@@ -1,18 +1,28 @@
 import User from '@/modules/user/user.model';
 import { v4 as uuidv4 } from 'uuid';
+import * as argon2 from 'argon2';
+
+export const hashPassword = (password: string) => {
+    return argon2.hash(password);
+};
+
+export const verifyPassword = (hashedPassword: string, providedPassword: string) => {
+    return argon2.verify(hashedPassword, providedPassword);
+};
 
 export const getUserByUsername = async (username: string) => {
-    const usersFound = await User.query().where('username', '=', username);
-    return usersFound[0];
+    const usersWithUsername = await User.query().where('username', '=', username);
+    return usersWithUsername[0];
 };
 
 export const createUser = async (newUserData: { username: string; password: string; email: string }) => {
     const { username, password, email } = newUserData;
+    const hashedPassword = await hashPassword(password);
     const newUser = await User.query()
         .insert({
             id: uuidv4(),
             username,
-            password,
+            password: hashedPassword,
             email,
         })
         .returning('*');

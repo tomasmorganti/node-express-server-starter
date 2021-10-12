@@ -1,7 +1,7 @@
-import knex from 'knex';
+import { knex, Knex } from 'knex';
 import { Model, knexSnakeCaseMappers } from 'objection';
 
-export type KnexDB = knex<any, unknown[]>;
+export type KnexDB = Knex<any, unknown[]>;
 
 export const connectDatabase = (connection: string) => {
     const db = knex({

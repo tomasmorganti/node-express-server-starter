@@ -5,6 +5,7 @@ import pingRoutes from '@/modules/ping/ping.routes';
 import applyMiddleware from '@/utils/applyMiddleware';
 import commonMiddleware from '@/middleware/common';
 import errorHandlers from '@/middleware/errorHandlers';
+import { sendEmail } from '../email/email.provider';
 
 beforeAll(() => {
     applyMiddleware(commonMiddleware, app);
@@ -29,6 +30,7 @@ describe('Testing ping routes', () => {
     });
     describe('[POST] /pong bad request missing "message" parameter', () => {
         it('responds with statusCode 400', async () => {
+            await sendEmail();
             await request(app).post('/pong').expect(400);
         });
     });

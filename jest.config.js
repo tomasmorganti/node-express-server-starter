@@ -9,6 +9,6 @@ module.exports = {
         '^.+\\.tsx?$': 'ts-jest',
     },
     setupFiles: ['dotenv/config'],
-    setupFilesAfterEnv: ['jest-extended'],
+    setupFilesAfterEnv: ['jest-extended/all'],
     moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>/' }),
 };
