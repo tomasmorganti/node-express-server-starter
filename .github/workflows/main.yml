@@ -26,8 +26,8 @@ jobs:
 
             # Runs a single command using the runners shell
             - name: Run tests
-                run: sh ./run-integration-tests.sh
-                env:
-                    SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
-                    TO_EMAIL: ${{ secrets.TO_EMAIL }}
-                    FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
+              run: sh ./run-integration-tests.sh
+              env:
+                  SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+                  TO_EMAIL: ${{ secrets.TO_EMAIL }}
+                  FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
