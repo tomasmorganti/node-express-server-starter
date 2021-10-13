@@ -25,7 +25,7 @@ jobs:
             - uses: actions/checkout@v2
             # Runs a single command using the runners shell
             - name: Run tests
-              # Define environment variables needed for tests
+              # Set variables passed in from shell for github actions. also set in file /docker-compose.test.yml
               env:
                   SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
                   FROM_EMAIL: ${{ secrets.FROM_EMAIL }}

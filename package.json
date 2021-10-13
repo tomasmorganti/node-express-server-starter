@@ -17,7 +17,8 @@
         "make:migration": "knex migrate:make --knexfile=knexfile.ts -x ts",
         "build": "tsc && tsc-alias",
         "start": "node dist/server.js",
-        "docker:install-package": "docker-compose exec -w /usr/local node npm install --save"
+        "docker:install-package": "docker-compose exec -w /usr/local node npm install --save",
+        "docker:dev-database": "docker-compose run -d --service-ports postgres"
     },
     "keywords": [],
     "author": "Tomas Morganti",
