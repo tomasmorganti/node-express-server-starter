@@ -2,36 +2,20 @@ import sgMail from '@sendgrid/mail';
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-export const templates = {
-    invite: {
-        id: 'd-79ba1fd147c2437d80d58c6f9cdd3066',
-    },
+export const templateIds = {
+    invite: 'd-79ba1fd147c2437d80d58c6f9cdd3066',
 };
 
-// const msg = {
-//     to: process.env.TO_EMAIL as string,
-//     from: process.env.FROM_EMAIL as string,
-//     templateId: templates.invite.id,
-//     dynamicTemplateData: {
-//         userRegisterUrl: 'www.google.com',
-//     },
-//     mail_settings: {
-//         sandbox_mode: {
-//             enable: process.env.NODE_ENV === 'test',
-//         },
-//     },
-// };
-
-type EmailConfig = {
-    to: string;
-    templateId: string;
-    dynamicTemplateData?: any;
+type DynamicTemplateDataObject = {
+    userRegisterUrl?: string;
 };
 
-export const sendEmail = async (emailConfig: EmailConfig) => {
+export const sendEmail = async (to: string, templateId: string, dynamicTemplateData?: DynamicTemplateDataObject) => {
     const msg = {
-        ...emailConfig,
         from: process.env.FROM_EMAIL as string,
+        to,
+        templateId,
+        dynamicTemplateData,
         mail_settings: {
             sandbox_mode: {
                 enable: process.env.NODE_ENV === 'test',

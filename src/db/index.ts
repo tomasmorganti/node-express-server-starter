@@ -3,7 +3,7 @@ import { Model, knexSnakeCaseMappers } from 'objection';
 
 export type KnexDB = Knex<any, unknown[]>;
 
-export const connectDatabase = (connection: string) => {
+export const connectDatabase = async (connection: string) => {
     const db = knex({
         client: 'pg',
         useNullAsDefault: true,
@@ -14,6 +14,13 @@ export const connectDatabase = (connection: string) => {
         },
         ...knexSnakeCaseMappers(),
     });
+    try {
+        await db.raw('Select 1 + 1 as result');
+        Model.knex(db);
+    } catch (e) {
+        console.log('Database connection failed. Error: ' + e);
+        process.exit(1);
+    }
     Model.knex(db);
     return db;
 };

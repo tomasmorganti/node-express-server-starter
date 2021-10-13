@@ -11,10 +11,9 @@ services:
             - ./package.json:/usr/local/package.json
             - ./package-lock.json:/usr/local/package-lock.json
             - exclude:/usr/local/app/node_modules/
+        env_file: .env
         environment:
             - PG_CONNECTION_STRING=postgres://admin:password@postgres/dev
-            - PORT=3000
-            - CORS_ORIGIN=true
         ports:
             - '3000:3000'
         depends_on:

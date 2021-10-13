@@ -15,7 +15,7 @@ beforeAll(async () => {
     applyMiddleware(commonMiddleware, app);
     applyRoutes(userRoutes, app);
     applyMiddleware(errorHandlers, app);
-    db = connectDatabase(process.env.PG_CONNECTION_STRING);
+    db = await connectDatabase(process.env.PG_CONNECTION_STRING);
     // Seed anything
     seededUsers = await db('users')
         .insert([{ id: uuidv4(), username: 'test_user', password: 'password', email: 'test@test.com' }])

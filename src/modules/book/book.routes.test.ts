@@ -14,7 +14,7 @@ beforeAll(async () => {
     applyMiddleware(commonMiddleware, app);
     applyRoutes(bookRoutes, app);
     applyMiddleware(errorHandlers, app);
-    db = connectDatabase(process.env.PG_CONNECTION_STRING);
+    db = await connectDatabase(process.env.PG_CONNECTION_STRING);
     // Seed anything
     seededBooks = await db('book')
         .insert([{ name: 'A Game of Thrones', author: 'George R. R. Martin' }])
