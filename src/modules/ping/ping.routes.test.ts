@@ -29,8 +29,6 @@ describe('Testing ping routes', () => {
     });
     describe('[POST] /pong bad request missing "message" parameter', () => {
         it('responds with statusCode 400', async () => {
-            console.log('pg ', process.env.PG_CONNECTION_STRING);
-            console.log('sg_key ', process.env.SENDGRID_API_KEY);
             await request(app).post('/pong').expect(400);
         });
     });
