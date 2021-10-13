@@ -27,7 +27,6 @@ jobs:
             - name: Run tests
               # Define environment variables needed for tests
               env:
-                  CORS_ORIGIN: true
                   SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
                   FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
               run: sh ./run-integration-tests.sh

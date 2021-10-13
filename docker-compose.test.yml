@@ -6,7 +6,7 @@ services:
                 - NODE_ENV=test
         image: test_server:v0.0.0
         container_name: integration_test_server
-        env_file: .env
+        env_file: .env.example
         environment:
             - PG_CONNECTION_STRING=postgres://admin:password@postgres/test
             # Set variables passed in from shell for github actions also defined in file /.github/workflows/main.yml
