@@ -1,10 +1,11 @@
 import request from 'supertest';
+
 import app from '@/app';
-import applyRoutes from '@/utils/applyRoutes';
-import pingRoutes from '@/modules/ping/ping.routes';
-import applyMiddleware from '@/utils/applyMiddleware';
 import commonMiddleware from '@/middleware/common';
 import errorHandlers from '@/middleware/errorHandlers';
+import pingRoutes from '@/services/ping/ping.routes';
+import applyMiddleware from '@/utils/applyMiddleware';
+import applyRoutes from '@/utils/applyRoutes';
 
 beforeAll(() => {
     applyMiddleware(commonMiddleware, app);

@@ -1,5 +1,6 @@
 import validateRequestParameters from '@/middleware/validateRequestParameters';
-import * as UserController from '@/modules/user/user.controller';
+
+import * as UserController from './user.controller';
 
 export default [
     {

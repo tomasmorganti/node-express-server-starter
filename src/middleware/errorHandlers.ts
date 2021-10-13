@@ -1,4 +1,5 @@
-import { Request, Response, NextFunction, Router } from 'express';
+import { NextFunction, Request, Response, Router } from 'express';
+
 import { HTTP404Error, HTTPClientError } from '@/utils/httpErrors';
 
 const handle404Error = (router: Router) => {

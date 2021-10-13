@@ -1,6 +1,7 @@
-import User from '@/modules/user/user.model';
-import { v4 as uuidv4 } from 'uuid';
 import * as argon2 from 'argon2';
+import { v4 as uuidv4 } from 'uuid';
+
+import User from './user.model';
 
 export const hashPassword = (password: string) => {
     return argon2.hash(password);

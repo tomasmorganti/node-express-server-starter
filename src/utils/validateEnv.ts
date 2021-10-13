@@ -1,4 +1,4 @@
-import { cleanEnv, port, str, email } from 'envalid';
+import { cleanEnv, email, port, str } from 'envalid';
 
 const validateEnv = () => {
     cleanEnv(process.env, {

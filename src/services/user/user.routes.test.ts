@@ -1,12 +1,14 @@
 import request from 'supertest';
+import { v4 as uuidv4 } from 'uuid';
+
 import app from '@/app';
 import { connectDatabase, KnexDB } from '@/db';
-import applyRoutes from '@/utils/applyRoutes';
-import userRoutes from '@/modules/user/user.routes';
-import applyMiddleware from '@/utils/applyMiddleware';
 import commonMiddleware from '@/middleware/common';
 import errorHandlers from '@/middleware/errorHandlers';
-import { v4 as uuidv4 } from 'uuid';
+import applyMiddleware from '@/utils/applyMiddleware';
+import applyRoutes from '@/utils/applyRoutes';
+
+import userRoutes from './user.routes';
 
 let db: KnexDB;
 let seededUsers: any;

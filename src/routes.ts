@@ -1,5 +1,5 @@
-import pingRoutes from '@/modules/ping/ping.routes';
-import bookRoutes from '@/modules/book/book.routes';
-import userRoutes from '@/modules/user/user.routes';
+import bookRoutes from '@/services/book/book.routes';
+import pingRoutes from '@/services/ping/ping.routes';
+import userRoutes from '@/services/user/user.routes';
 
 export default [...pingRoutes, ...bookRoutes, ...userRoutes];

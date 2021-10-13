@@ -1,5 +1,5 @@
-import { knex, Knex } from 'knex';
-import { Model, knexSnakeCaseMappers } from 'objection';
+import { Knex, knex } from 'knex';
+import { knexSnakeCaseMappers, Model } from 'objection';
 
 export type KnexDB = Knex<any, unknown[]>;
 

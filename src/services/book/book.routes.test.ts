@@ -1,11 +1,12 @@
 import request from 'supertest';
+
 import app from '@/app';
 import { connectDatabase, KnexDB } from '@/db';
-import applyRoutes from '@/utils/applyRoutes';
-import bookRoutes from '@/modules/book/book.routes';
-import applyMiddleware from '@/utils/applyMiddleware';
 import commonMiddleware from '@/middleware/common';
 import errorHandlers from '@/middleware/errorHandlers';
+import bookRoutes from '@/services/book/book.routes';
+import applyMiddleware from '@/utils/applyMiddleware';
+import applyRoutes from '@/utils/applyRoutes';
 
 let db: KnexDB;
 let seededBooks: any;

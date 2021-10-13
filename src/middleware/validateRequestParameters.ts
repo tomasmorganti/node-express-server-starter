@@ -1,7 +1,8 @@
-import { Request, Response, NextFunction } from 'express';
-import { HTTP400Error } from '@/utils/httpErrors';
 import Ajv, { SchemaObject } from 'ajv';
 import addFormats from 'ajv-formats';
+import { NextFunction, Request, Response } from 'express';
+
+import { HTTP400Error } from '@/utils/httpErrors';
 
 export default (paramSchema: SchemaObject) => {
     return (req: Request, res: Response, next: NextFunction) => {

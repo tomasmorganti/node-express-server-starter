@@ -5,9 +5,15 @@
         "sourceType": "module"
     },
     "extends": ["plugin:@typescript-eslint/recommended", "prettier", "plugin:prettier/recommended"],
+    "plugins": ["simple-import-sort", "import"],
     "rules": {
         "@typescript-eslint/explicit-module-boundary-types": "off",
         "@typescript-eslint/no-explicit-any": "off",
-        "@typescript-eslint/no-unused-vars": "off"
+        "@typescript-eslint/no-unused-vars": "off",
+        "simple-import-sort/imports": "error",
+        "simple-import-sort/exports": "error",
+        "import/first": "error",
+        "import/newline-after-import": "error",
+        "import/no-duplicates": "error"
     }
 }

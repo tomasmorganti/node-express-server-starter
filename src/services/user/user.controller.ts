@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
-import * as UserService from '@/modules/user/user.service';
+
 import { HTTP400Error } from '@/utils/httpErrors';
+
+import * as UserService from './user.service';
 
 type RegisterUserResObj = {
     id: string;

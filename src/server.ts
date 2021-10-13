@@ -1,12 +1,13 @@
 import 'dotenv/config.js';
-import validateEnv from '@/utils/validateEnv';
+
 import app from '@/app';
-import applyMiddleware from '@/utils/applyMiddleware';
-import commonMiddleware from '@/middleware/common';
-import applyRoutes from '@/utils/applyRoutes';
-import routes from '@/routes';
-import errorHandlers from '@/middleware/errorHandlers';
 import { connectDatabase } from '@/db';
+import commonMiddleware from '@/middleware/common';
+import errorHandlers from '@/middleware/errorHandlers';
+import routes from '@/routes';
+import applyMiddleware from '@/utils/applyMiddleware';
+import applyRoutes from '@/utils/applyRoutes';
+import validateEnv from '@/utils/validateEnv';
 
 process.on('uncaughtException', (e) => {
     console.error({

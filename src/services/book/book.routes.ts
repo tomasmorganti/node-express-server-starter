@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
-import Book, { BookShape } from '@/modules/book/book.model';
+
+import Book, { BookShape } from '@/services/book/book.model';
 import { HTTP404Error } from '@/utils/httpErrors';
 
 export default [

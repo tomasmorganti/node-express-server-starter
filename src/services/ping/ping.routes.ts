@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+
 import validateRequestParameters from '@/middleware/validateRequestParameters';
 
 export default [
